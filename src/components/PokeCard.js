@@ -5,7 +5,14 @@ import { Grid, Typography, Paper } from '@material-ui/core';
 const PokeCard = props => {
   return (
     <Grid item lg={4}>
-      <Link to={{pathname: "/details", state: {id: props.id, name: props.name}}} style={{textDecoration: 'none'}}>
+      <Link
+        to={{
+          pathname: '/details',
+          search: `?pokemon=${props.name}`,
+          state: { id: props.id, name: props.name }
+        }}
+        style={{ textDecoration: 'none' }}
+      >
         <Paper elevation={8} style={{ backgroundColor: '#A9A9A9' }}>
           <img
             src={`https://pokeres.bastionbot.org/images/pokemon/${props.id}.png`}

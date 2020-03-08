@@ -47,7 +47,12 @@ class SingleView extends Component {
   render() {
     return (
       <Grid container space={3}>
-        <Grid container justify="center" alignItems="center" style={{marginBottom: '20px'}}>
+        <Grid
+          container
+          justify="center"
+          alignItems="center"
+          style={{ marginBottom: '20px' }}
+        >
           <Typography variant="h3" color="primary">
             {this.state.name[0].toUpperCase() +
               this.state.name.substring(1, this.state.name.length)}
