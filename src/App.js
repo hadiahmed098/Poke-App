@@ -1,68 +1,21 @@
-import React, { Component } from 'react';
-import PokeHolder from './components/PokeHolder';
-import { Grid, Typography, Button } from '@material-ui/core';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import PokeView from './components/PokeView';
+import NavBar from './components/NavBar';
+import SingleView from './components/SingleView';
+import Default from './components/Default';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { pokeList: [], offset: 0 };
-    this.handleMore = this.handleMore.bind(this);
-  }
-  handleMore = async offset => {
-    let url = `https://pokeapi.co/api/v2/pokemon/?limit=20&offset=${offset}`;
-    const response = await fetch(url);
-    const json = await response.json();
-    const pattern = '/([0-9]+)/';
-    const pokemon = json.results.map(item => {
-      let match = item.url.match(pattern);
-      let id = match[1];
-      return { name: item.name, id: id };
-    });
-    this.setState({
-      offset: this.state.offset + 20,
-      pokeList: [...pokemon]
-    });
-    return pokemon;
-  };
-  render() {
-    return (
-      <Grid container justify="space-evenly">
-        <Grid container>
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-          >
-            <Grid item>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg" />
-            </Grid>
-            <Grid item>
-              <Typography variant="h3" color="primary">
-                Pokedex Viewer
-              </Typography>
-            </Grid>
-          </Grid>
-
-          <PokeHolder
-            pokemon={this.state.pokeList}
-            loader={() => this.handleMore(this.state.offset)}
-          />
-        </Grid>
-        <Grid container justify="center">
-          <div style={{ padding: 20 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => this.handleMore(this.state.offset)}
-            >
-              View More
-            </Button>
-          </div>
-        </Grid>
-      </Grid>
-    );
-  }
-}
+const App = () => {
+  return (
+    <React.Fragment>
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={PokeView} />
+        <Route path="/details" component={SingleView} />
+        <Route component={Default} />
+      </Switch>
+    </React.Fragment>
+  );
+};
 
 export default App;
