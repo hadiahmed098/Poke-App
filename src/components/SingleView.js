@@ -13,7 +13,8 @@ class SingleView extends Component {
       weight: 0,
       types: [],
       abilities: [],
-      experience: 0
+      experience: 0,
+      games: []
     };
   }
 
@@ -27,6 +28,7 @@ class SingleView extends Component {
     const json = await response.json();
     let abilities = this.separate(json.abilities, 'ability');
     let types = this.separate(json.types, 'type');
+    let games = this.separate(json.game_indices, 'version')
     const height = json.height;
     const weight = json.weight;
     const experience = json.base_experience;
@@ -35,7 +37,8 @@ class SingleView extends Component {
       weight,
       types,
       abilities,
-      experience
+      experience,
+      games
     });
   };
 
@@ -81,6 +84,7 @@ class SingleView extends Component {
                 <li>Weight: {this.state.weight}</li>
                 <li>Types: {this.state.types}</li>
                 <li>Abilities: {this.state.abilities}</li>
+                <li>Games: {this.state.games}</li>
               </ul>
             </Typography>
           </Paper>
