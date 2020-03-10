@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Paper, Typography, Button, Link } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 
 
 class SingleView extends Component {
@@ -47,7 +47,7 @@ class SingleView extends Component {
 
   render() {
     return (
-      <Paper elevation={0} style={{padding:'10px', marginBottom:'10px',backgroundColor:'#A9A9A9'}}>
+      <Paper elevation={0} style={{padding:'10px',backgroundColor:'#A9A9A9'}}>
       <Typography variant="h5">
         Types: {this.state.types}
       </Typography>
@@ -60,9 +60,6 @@ class SingleView extends Component {
       <Typography variant="h5">
         Experience: {this.state.experience}
       </Typography>
-        <Button variant="outlined" color="default">
-          Read More {/*TODO add single page*/}
-        </Button>
       </Paper>
     );
   }

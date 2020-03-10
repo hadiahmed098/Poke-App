@@ -2,7 +2,7 @@ import React from 'react';
 import PokeView from './components/PokeView';
 import NavBar from './components/NavBar';
 import {Switch, Route} from 'react-router-dom';
-import SingleView from './components/StatCard';
+import SingleView from './components/SingleView';
 import Default from './components/Default'
 
 const App = () => {

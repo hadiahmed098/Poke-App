@@ -1,6 +1,6 @@
-import React from 'react';
-import { Component } from 'react';
-import { Grid, Typography, Paper } from '@material-ui/core';
+import React, { Component} from 'react';
+import { Link } from 'react-router-dom';
+import { Grid, Typography, Paper, Button } from '@material-ui/core';
 import StatCard from './StatCard';
 
 class PokeCard extends Component{
@@ -42,6 +42,16 @@ class PokeCard extends Component{
                   this.state.name.substring(1, this.state.name.length)}
               </Typography>
               <StatCard name={this.state.name} id={this.state.name} />
+              <Link
+                to={{
+                  pathname:'/details',
+                  search: `?pokemon=${this.state.name}&id=${this.state.id}`,
+                  state: {id: this.state.id, name: this.state.name}
+                }} >
+                <Button variant='outlined' style={{marginBottom:'10px'}}>
+                  Read More
+                </Button>
+              </Link>
             </Grid>
           </Paper>
         </Grid>
