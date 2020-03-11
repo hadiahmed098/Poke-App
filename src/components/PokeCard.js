@@ -45,7 +45,6 @@ class PokeCard extends Component{
               <Link
                 to={{
                   pathname:'/details',
-                  search: `?pokemon=${this.state.name}&id=${this.state.id}`,
                   state: {id: this.state.id, name: this.state.name}
                 }} >
                 <Button variant='outlined' style={{marginBottom:'10px'}}>

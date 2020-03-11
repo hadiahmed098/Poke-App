@@ -14,7 +14,8 @@ class SingleView extends Component {
       types: [],
       abilities: [],
       experience: 0,
-      games: []
+      games: [],
+      moves: [],
     };
   }
 
@@ -28,17 +29,23 @@ class SingleView extends Component {
     const json = await response.json();
     let abilities = this.separate(json.abilities, 'ability');
     let types = this.separate(json.types, 'type');
-    let games = this.separate(json.game_indices, 'version')
+    let games = this.separate(json.game_indices, 'version');
+    let moves = this.separate(json.moves, 'move');
     const height = json.height;
     const weight = json.weight;
     const experience = json.base_experience;
+    const id = json.id;
+    const name = json.name;
     this.setState({
       height,
       weight,
       types,
       abilities,
       experience,
-      games
+      games,
+      moves,
+      id,
+      name
     });
   };
 
@@ -61,22 +68,20 @@ class SingleView extends Component {
               this.state.name.substring(1, this.state.name.length)}
           </Typography>
         </Grid>
-        <Grid container justify="space-around" space={3}>
+        <Grid container justify="center" space={1} direction='row'>
           <Paper
-            elevation={8}
+            elevation={0}
             style={{ backgroundColor: '#A9A9A9', padding: '20px' }}
           >
+            <Grid item xs={3}>
             <img
               src={`https://pokeres.bastionbot.org/images/pokemon/${this.state.id}.png`}
               height={300}
               width={300}
               alt={this.state.name}
             />
-          </Paper>
-          <Paper
-            elevation={8}
-            style={{ backgroundColor: '#A9A9A9', padding: '20px' }}
-          >
+            </Grid>
+            <Grid item xs={8}>
             <Typography variant="h4">
               <ul>
                 <li>Base Experience: {this.state.experience}</li>
@@ -85,8 +90,10 @@ class SingleView extends Component {
                 <li>Types: {this.state.types}</li>
                 <li>Abilities: {this.state.abilities}</li>
                 <li>Games: {this.state.games}</li>
+                <li>Moves: {this.state.moves}</li> 
               </ul>
             </Typography>
+            </Grid>
           </Paper>
         </Grid>
       </Grid>
